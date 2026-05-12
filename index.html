@@ -1,0 +1,2270 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AMRZ - Gestão e Finanças: consultoria financeira empresarial, planejamento, BPO financeiro e muito mais. Transforme sua gestão financeira com especialistas." />
+  <title>AMRZ - Gestão e Finanças</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===================== RESET & BASE ===================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0B1E3D;
+      --navy-mid:   #162E55;
+      --navy-light: #1E3F72;
+      --gold:       #C9A84C;
+      --gold-light: #E2C06B;
+      --gold-pale:  #F5EDD5;
+      --white:      #FFFFFF;
+      --off-white:  #F7F8FC;
+      --gray-100:   #EEF0F5;
+      --gray-300:   #CBD2DF;
+      --gray-500:   #7A89A3;
+      --gray-700:   #3D4F6B;
+      --text-dark:  #0B1E3D;
+      --text-body:  #3D4F6B;
+      --radius-sm:  8px;
+      --radius-md:  14px;
+      --radius-lg:  24px;
+      --shadow-sm:  0 2px 12px rgba(11,30,61,.08);
+      --shadow-md:  0 8px 32px rgba(11,30,61,.13);
+      --shadow-lg:  0 20px 60px rgba(11,30,61,.18);
+      --transition: .3s cubic-bezier(.4,0,.2,1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-body);
+      background: var(--white);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a   { text-decoration: none; color: inherit; }
+    ul  { list-style: none; }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===================== TYPOGRAPHY ===================== */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+
+    h2.section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      color: var(--text-dark);
+      line-height: 1.25;
+      margin-bottom: 18px;
+    }
+    h2.section-title span { color: var(--gold); }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--gray-500);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ===================== BUTTONS ===================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-size: .95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: var(--transition);
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--navy);
+    }
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201,168,76,.35);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,.45);
+    }
+    .btn-outline:hover {
+      background: rgba(255,255,255,.1);
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+    .btn-outline-dark {
+      background: transparent;
+      color: var(--navy);
+      border-color: var(--navy-light);
+    }
+    .btn-outline-dark:hover {
+      background: var(--navy);
+      color: var(--white);
+    }
+    .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ===================== HEADER / NAV ===================== */
+    #header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 18px 0;
+      transition: var(--transition);
+    }
+    #header.scrolled {
+      background: rgba(11,30,61,.97);
+      backdrop-filter: blur(12px);
+      padding: 12px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,.25);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--gold);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .logo-text strong {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: .04em;
+    }
+    .logo-text span {
+      font-size: .7rem;
+      color: var(--gold);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+    }
+    .nav-links a {
+      font-size: .9rem;
+      font-weight: 500;
+      color: rgba(255,255,255,.75);
+      transition: var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--gold);
+      transition: var(--transition);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta { margin-left: 8px; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      border: none;
+      background: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* ===================== HERO ===================== */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 55%, #0D2847 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px;
+    }
+
+    /* Decorative grid */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Glow orbs */
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+    .hero-orb-1 {
+      width: 500px;
+      height: 500px;
+      background: rgba(201,168,76,.12);
+      top: -120px;
+      right: -100px;
+    }
+    .hero-orb-2 {
+      width: 350px;
+      height: 350px;
+      background: rgba(30,63,114,.4);
+      bottom: -80px;
+      left: -80px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(201,168,76,.15);
+      border: 1px solid rgba(201,168,76,.3);
+      border-radius: 50px;
+      padding: 6px 16px;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: .5; transform: scale(.8); }
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero-title span { color: var(--gold); }
+
+    .hero-desc {
+      font-size: 1.08rem;
+      color: rgba(255,255,255,.7);
+      line-height: 1.75;
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 36px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+    .hero-stat-item {}
+    .hero-stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: .78rem;
+      color: rgba(255,255,255,.55);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    /* Hero visual (right side) */
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-dashboard {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px;
+      padding: 28px;
+      width: 100%;
+      max-width: 420px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 30px 80px rgba(0,0,0,.35);
+    }
+
+    .dash-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+    }
+    .dash-title {
+      font-size: .8rem;
+      color: rgba(255,255,255,.5);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+    .dash-badge {
+      background: rgba(34,197,94,.15);
+      color: #4ade80;
+      font-size: .72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+      border: 1px solid rgba(34,197,94,.25);
+    }
+
+    .dash-main-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 2.4rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .dash-sub {
+      font-size: .82rem;
+      color: rgba(255,255,255,.4);
+      margin-bottom: 24px;
+    }
+
+    /* Mini chart bars */
+    .dash-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 70px;
+      margin-bottom: 24px;
+    }
+    .dash-bar {
+      flex: 1;
+      border-radius: 4px 4px 0 0;
+      background: rgba(201,168,76,.25);
+      transition: var(--transition);
+      position: relative;
+    }
+    .dash-bar.active {
+      background: var(--gold);
+    }
+    .dash-bar:hover { opacity: .85; }
+
+    .dash-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .dash-metric {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px;
+      padding: 14px;
+    }
+    .dash-metric-label {
+      font-size: .72rem;
+      color: rgba(255,255,255,.4);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      margin-bottom: 6px;
+    }
+    .dash-metric-value {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .dash-metric-value.up   { color: #4ade80; }
+    .dash-metric-value.down { color: #f87171; }
+
+    /* ===================== SERVICES ===================== */
+    #servicos {
+      padding: 100px 0;
+      background: var(--off-white);
+    }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .services-header .section-label {
+      justify-content: center;
+    }
+    .services-header .section-label::before { display: none; }
+    .services-header .section-label::after {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+    .services-header .section-subtitle {
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      border: 1px solid var(--gray-100);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: var(--transition);
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--gold-pale);
+    }
+    .service-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--gold-pale);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .service-icon svg {
+      width: 26px;
+      height: 26px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .service-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+    .service-card p {
+      font-size: .9rem;
+      color: var(--gray-500);
+      line-height: 1.65;
+    }
+
+    /* ===================== BI STEPS (service card) ===================== */
+    .service-bi-steps {
+      list-style: none;
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .service-bi-steps li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: .84rem;
+      color: var(--gray-500);
+      line-height: 1.55;
+    }
+    .service-bi-steps li strong {
+      color: var(--text-dark);
+    }
+    .bi-step-num {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      background: var(--gold);
+      color: var(--navy);
+      border-radius: 6px;
+      font-size: .68rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+      letter-spacing: .02em;
+    }
+
+    /* ===================== ABOUT ===================== */
+    #sobre {
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-card-main {
+      background: var(--navy);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-card-main::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px;
+      height: 200px;
+      background: rgba(201,168,76,.08);
+      border-radius: 50%;
+    }
+
+    .about-card-label {
+      font-size: .75rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .about-card-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .about-card-desc {
+      font-size: .9rem;
+      color: rgba(255,255,255,.6);
+      line-height: 1.6;
+    }
+
+    .about-stats-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .about-stat-box {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .about-stat-box .num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--white);
+    }
+    .about-stat-box .lbl {
+      font-size: .75rem;
+      color: rgba(255,255,255,.45);
+      margin-top: 2px;
+    }
+
+    .about-floating {
+      position: absolute;
+      bottom: -24px;
+      right: -24px;
+      background: var(--gold);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      box-shadow: var(--shadow-lg);
+    }
+    .about-floating .num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .about-floating .lbl {
+      font-size: .72rem;
+      color: rgba(11,30,61,.65);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-top: 4px;
+    }
+
+    .about-content {}
+    .about-content .section-subtitle {
+      margin-bottom: 28px;
+    }
+
+    .about-features {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-bottom: 36px;
+    }
+    .about-feature {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .about-feature-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gold-pale);
+      border-radius: 8px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-feature-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .about-feature-text h4 {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 3px;
+    }
+    .about-feature-text p {
+      font-size: .85rem;
+      color: var(--gray-500);
+      line-height: 1.55;
+    }
+
+    /* ===================== DIFERENCIAIS ===================== */
+    #diferenciais {
+      padding: 100px 0;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #diferenciais::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .dif-inner {
+      position: relative;
+      z-index: 1;
+    }
+    .dif-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .dif-header h2 { color: var(--white); }
+    .dif-header .section-label { justify-content: center; }
+    .dif-header .section-label::before { display: none; }
+    .dif-header .section-label::after {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+    .dif-header .section-subtitle {
+      color: rgba(255,255,255,.55);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .dif-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .dif-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--radius-md);
+      padding: 32px 24px;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .dif-card:hover {
+      background: rgba(255,255,255,.09);
+      border-color: rgba(201,168,76,.35);
+      transform: translateY(-4px);
+    }
+
+    .dif-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(201,168,76,.12);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      border: 1px solid rgba(201,168,76,.2);
+    }
+    .dif-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .dif-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .dif-card p {
+      font-size: .85rem;
+      color: rgba(255,255,255,.5);
+      line-height: 1.65;
+    }
+
+    /* ===================== DEPOIMENTOS ===================== */
+    #depoimentos {
+      padding: 100px 0;
+      background: var(--off-white);
+    }
+
+    .test-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .test-header .section-label { justify-content: center; }
+    .test-header .section-label::before { display: none; }
+    .test-header .section-label::after {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
+    }
+    .test-header .section-subtitle {
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .test-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: 32px;
+      border: 1px solid var(--gray-100);
+      transition: var(--transition);
+      position: relative;
+    }
+    .test-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--gold-pale);
+    }
+
+    .test-quote-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gold-pale);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .test-quote-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--gold);
+    }
+
+    .test-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 14px;
+    }
+    .test-star {
+      width: 16px;
+      height: 16px;
+      fill: var(--gold);
+    }
+
+    .test-card blockquote {
+      font-size: .92rem;
+      color: var(--text-body);
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+
+    .test-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .test-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy-light), var(--navy));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: .9rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .test-info {}
+    .test-name {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+    .test-role {
+      font-size: .78rem;
+      color: var(--gray-500);
+    }
+
+    /* ===================== EQUIPE ===================== */
+    .equipe-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--gray-100);
+      overflow: hidden;
+      max-width: 900px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-sm);
+    }
+    .eq-top {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 36px 40px 30px;
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+      position: relative;
+      overflow: hidden;
+    }
+    .eq-top::before {
+      content: '';
+      position: absolute;
+      top: -50px; right: -50px;
+      width: 200px; height: 200px;
+      background: rgba(201,168,76,.07);
+      border-radius: 50%;
+    }
+    .eq-avatar {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; font-weight: 800;
+      color: var(--navy);
+      flex-shrink: 0;
+      border: 3px solid rgba(201,168,76,.4);
+    }
+    .eq-info { flex: 1; position: relative; z-index: 1; }
+    .eq-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--white);
+      margin-bottom: 5px;
+    }
+    .eq-role {
+      font-size: .9rem; color: var(--gold);
+      font-weight: 600; margin-bottom: 12px;
+    }
+    .eq-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+    .eq-badge {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 50px;
+      padding: 4px 13px;
+      font-size: .72rem; color: rgba(255,255,255,.75); font-weight: 500;
+    }
+    .eq-badge-gold {
+      background: rgba(201,168,76,.15);
+      border-color: rgba(201,168,76,.35);
+      color: var(--gold);
+    }
+    .eq-body { padding: 32px 40px; }
+    .eq-summary {
+      font-size: .93rem; color: var(--text-body);
+      line-height: 1.8;
+      border-left: 3px solid var(--gold);
+      padding-left: 16px;
+      margin-bottom: 28px;
+    }
+    .eq-summary strong { color: var(--text-dark); }
+    .eq-bb-block {
+      background: var(--off-white);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-bottom: 24px;
+      border: 1px solid var(--gray-100);
+    }
+    .eq-bb-header {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 18px;
+    }
+    .eq-bb-logo {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      background: #FDCE01;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: .78rem;
+      color: var(--navy); flex-shrink: 0;
+    }
+    .eq-bb-title { font-size: 1rem; font-weight: 700; color: var(--text-dark); }
+    .eq-bb-period { font-size: .78rem; color: var(--gray-500); margin-top: 2px; }
+    .eq-bb-tag {
+      margin-left: auto;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: .7rem; font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+    .eq-bb-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .eq-bb-item {
+      display: flex; gap: 8px;
+      align-items: flex-start;
+      font-size: .83rem; color: var(--text-body); line-height: 1.55;
+    }
+    .eq-dot {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+    .eq-other-block { margin-bottom: 22px; }
+    .eq-block-title {
+      font-size: .75rem; font-weight: 700;
+      color: var(--text-dark);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: 12px;
+    }
+    .eq-tags-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .eq-tag {
+      background: var(--gray-100);
+      border: 1px solid var(--gray-300);
+      border-radius: var(--radius-sm);
+      padding: 7px 14px;
+      font-size: .82rem;
+    }
+    .eq-tag strong { color: var(--text-dark); display: block; font-size: .83rem; }
+    .eq-tag span { font-size: .74rem; color: var(--gray-500); }
+    .eq-tag-gold {
+      background: var(--gold-pale);
+      border-color: rgba(201,168,76,.35);
+    }
+    .eq-tag-gold strong { color: var(--navy); }
+    .eq-divider {
+      border: none;
+      border-top: 1px solid var(--gray-100);
+      margin: 20px 0;
+    }
+    .eq-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .eq-form-item {
+      background: var(--off-white);
+      border-radius: 10px;
+      padding: 12px 14px;
+      border: 1px solid var(--gray-100);
+    }
+    .eq-form-item strong {
+      font-size: .83rem; color: var(--text-dark);
+      display: block; margin-bottom: 3px;
+    }
+    .eq-form-item span { font-size: .76rem; color: var(--gray-500); }
+    .eq-certs-row { display: flex; gap: 8px; flex-wrap: wrap; }
+    .eq-cert {
+      background: var(--gold-pale);
+      border: 1px solid rgba(201,168,76,.3);
+      border-radius: 50px;
+      padding: 5px 14px;
+      font-size: .76rem; color: var(--navy); font-weight: 600;
+    }
+
+    @media (max-width: 768px) {
+      .eq-top        { flex-direction: column; padding: 28px 24px 24px; }
+      .eq-body       { padding: 24px; }
+      .eq-bb-grid    { grid-template-columns: 1fr; }
+      .eq-form-grid  { grid-template-columns: 1fr; }
+      .eq-bb-tag     { display: none; }
+    }
+
+    /* ===================== CTA BANNER ===================== */
+    #cta {
+      padding: 90px 0;
+      background: linear-gradient(135deg, #C9A84C 0%, #E2C06B 50%, #C9A84C 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    #cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1' fill='%230B1E3D' fill-opacity='.06'/%3E%3C/svg%3E");
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .cta-inner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+    .cta-inner p {
+      font-size: 1.05rem;
+      color: rgba(11,30,61,.7);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+    .cta-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-cta-primary {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+    .btn-cta-primary:hover {
+      background: var(--navy-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(11,30,61,.3);
+    }
+    .btn-cta-outline {
+      background: transparent;
+      color: var(--navy);
+      border-color: rgba(11,30,61,.35);
+    }
+    .btn-cta-outline:hover {
+      background: rgba(11,30,61,.08);
+    }
+
+    /* ===================== CONTACT ===================== */
+    #contato {
+      padding: 100px 0;
+      background: var(--white);
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .contact-info {}
+    .contact-info .section-subtitle {
+      margin-bottom: 36px;
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .contact-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .contact-item-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--gold-pale);
+      border-radius: 10px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .contact-item-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .contact-item-text h4 {
+      font-size: .88rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 2px;
+    }
+    .contact-item-text p, .contact-item-text a {
+      font-size: .9rem;
+      color: var(--gray-500);
+    }
+    .contact-item-text a:hover { color: var(--gold); }
+
+    /* Form */
+    .contact-form {
+      background: var(--off-white);
+      border: 1px solid var(--gray-100);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+    .contact-form h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-group label {
+      display: block;
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 7px;
+      letter-spacing: .02em;
+    }
+    .form-control {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--gray-100);
+      border-radius: var(--radius-sm);
+      font-family: 'Inter', sans-serif;
+      font-size: .92rem;
+      color: var(--text-dark);
+      background: var(--white);
+      transition: var(--transition);
+      outline: none;
+    }
+    .form-control:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,.12);
+    }
+    .form-control::placeholder { color: var(--gray-300); }
+    textarea.form-control { resize: vertical; min-height: 110px; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-submit {
+      width: 100%;
+      margin-top: 8px;
+      padding: 15px;
+      justify-content: center;
+    }
+
+    /* ===================== FOOTER ===================== */
+    footer {
+      background: var(--navy);
+      padding: 64px 0 32px;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand .logo-text strong { color: var(--white); }
+    .footer-brand p {
+      font-size: .87rem;
+      color: rgba(255,255,255,.45);
+      line-height: 1.7;
+      margin-top: 16px;
+      max-width: 260px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .footer-social a:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .footer-social a svg {
+      width: 16px;
+      height: 16px;
+      fill: rgba(255,255,255,.6);
+      transition: var(--transition);
+    }
+    .footer-social a:hover svg { fill: var(--navy); }
+
+    .footer-col h4 {
+      font-size: .82rem;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      margin-bottom: 20px;
+    }
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+    .footer-col ul li a {
+      font-size: .87rem;
+      color: rgba(255,255,255,.45);
+      transition: var(--transition);
+    }
+    .footer-col ul li a:hover {
+      color: var(--gold);
+      padding-left: 4px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom p {
+      font-size: .82rem;
+      color: rgba(255,255,255,.3);
+    }
+    .footer-bottom a { color: var(--gold); }
+
+    /* ===================== WHATSAPP FLOAT ===================== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      width: 58px;
+      height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 28px rgba(37,211,102,.4);
+      transition: var(--transition);
+      animation: float 3s ease-in-out infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 36px rgba(37,211,102,.5);
+    }
+    .whatsapp-float svg {
+      width: 30px;
+      height: 30px;
+      fill: var(--white);
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-5px); }
+    }
+    .whatsapp-float:hover { animation: none; }
+
+    /* ===================== ANIMATIONS ===================== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===================== MOBILE NAV ===================== */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--navy);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.8);
+    }
+    .mobile-nav a:hover { color: var(--gold); }
+    .mobile-nav-close {
+      position: absolute;
+      top: 24px; right: 28px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--white);
+      font-size: 1.6rem;
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .dif-grid      { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner  { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner      { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual     { display: none; }
+      .about-inner     { grid-template-columns: 1fr; gap: 40px; }
+      .contact-inner   { grid-template-columns: 1fr; gap: 40px; }
+      .test-grid       { grid-template-columns: 1fr; }
+      .services-grid   { grid-template-columns: 1fr; }
+      .dif-grid        { grid-template-columns: 1fr 1fr; }
+      .nav-links       { display: none; }
+      .nav-cta         { display: none; }
+      .hamburger       { display: flex; }
+      .hero-stats      { gap: 24px; flex-wrap: wrap; }
+      .footer-inner    { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom   { flex-direction: column; text-align: center; }
+      .about-floating  { display: none; }
+      .form-row        { grid-template-columns: 1fr; }
+      .contact-form    { padding: 28px 22px; }
+    }
+
+    @media (max-width: 480px) {
+      .dif-grid   { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+      .cta-actions  { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ==================== MOBILE NAV ==================== -->
+<nav class="mobile-nav" id="mobileNav" role="dialog" aria-label="Menu de navegação">
+  <button class="mobile-nav-close" onclick="closeMobileNav()" aria-label="Fechar menu">✕</button>
+  <a href="#servicos" onclick="closeMobileNav()">Serviços</a>
+  <a href="#sobre"    onclick="closeMobileNav()">Sobre</a>
+  <a href="#diferenciais" onclick="closeMobileNav()">Diferenciais</a>
+  <a href="#equipe"  onclick="closeMobileNav()">Nossa Equipe</a>
+  <a href="#contato"  onclick="closeMobileNav()">Contato</a>
+</nav>
+
+<!-- ==================== HEADER ==================== -->
+<header id="header" role="banner">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="logo" aria-label="AMRZ - Gestão e Finanças">
+        <div class="logo-icon">A</div>
+        <div class="logo-text">
+          <strong>AMRZ</strong>
+          <span>Gestão &amp; Finanças</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#servicos">Serviços</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#diferenciais">Diferenciais</a>
+        <a href="#equipe">Nossa Equipe</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <a href="#contato" class="btn btn-primary nav-cta" style="padding:11px 22px;font-size:.85rem;">
+        Fale Conosco
+      </a>
+
+      <button class="hamburger" onclick="openMobileNav()" aria-label="Abrir menu" aria-expanded="false" id="hamburgerBtn">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== HERO ==================== -->
+<section id="hero" role="main">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+
+  <div class="container">
+    <div class="hero-inner">
+      <!-- Left -->
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Consultoria Financeira Especializada
+        </div>
+
+        <h1 class="hero-title">
+          Transforme sua <span>Gestão Financeira</span> em Vantagem Competitiva
+        </h1>
+
+        <p class="hero-desc">
+          A AMRZ une estratégia, tecnologia e expertise financeira para entregar resultados reais ao seu negócio — do planejamento à execução.
+        </p>
+
+        <div class="hero-actions">
+          <a href="https://wa.me/5528999691480" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.528 5.858L0 24l6.335-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.855 0-3.596-.502-5.096-1.373l-.365-.217-3.762.896.944-3.658-.237-.378A9.965 9.965 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            Falar no WhatsApp
+          </a>
+          <a href="#servicos" class="btn btn-outline">
+            Nossos Serviços
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat-item">
+            <div class="hero-stat-num">+150</div>
+            <div class="hero-stat-label">Empresas Atendidas</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="hero-stat-num">+8</div>
+            <div class="hero-stat-label">Anos de Experiência</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="hero-stat-num">98%</div>
+            <div class="hero-stat-label">Satisfação dos Clientes</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Dashboard mockup -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-dashboard">
+          <div class="dash-header">
+            <span class="dash-title">Resultado Mensal</span>
+            <span class="dash-badge">▲ +12,4%</span>
+          </div>
+          <div class="dash-main-value">R$ 248.500</div>
+          <div class="dash-sub">Receita líquida — Maio 2026</div>
+
+          <div class="dash-chart">
+            <div class="dash-bar" style="height:45%"></div>
+            <div class="dash-bar" style="height:60%"></div>
+            <div class="dash-bar" style="height:50%"></div>
+            <div class="dash-bar" style="height:72%"></div>
+            <div class="dash-bar" style="height:58%"></div>
+            <div class="dash-bar" style="height:80%"></div>
+            <div class="dash-bar active" style="height:100%"></div>
+          </div>
+
+          <div class="dash-metrics">
+            <div class="dash-metric">
+              <div class="dash-metric-label">Lucro</div>
+              <div class="dash-metric-value up">▲ R$ 61k</div>
+            </div>
+            <div class="dash-metric">
+              <div class="dash-metric-label">Despesas</div>
+              <div class="dash-metric-value down">▼ R$ 18k</div>
+            </div>
+            <div class="dash-metric">
+              <div class="dash-metric-label">Margem</div>
+              <div class="dash-metric-value">24,6%</div>
+            </div>
+            <div class="dash-metric">
+              <div class="dash-metric-label">Fluxo de Caixa</div>
+              <div class="dash-metric-value up">▲ Positivo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SERVICES ==================== -->
+<section id="servicos" aria-labelledby="servicos-title">
+  <div style="padding:100px 0;background:var(--off-white);">
+    <div class="container">
+      <div class="services-header fade-up">
+        <div class="section-label">Nossos Serviços</div>
+        <h2 class="section-title" id="servicos-title">Soluções Financeiras <span>Completas</span></h2>
+        <p class="section-subtitle">Cada serviço é desenhado para resolver desafios reais do seu negócio com precisão e eficiência.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Gestão Financeira Empresarial</h3>
+          <p>Organização completa das finanças da sua empresa: contas a pagar e receber, conciliação bancária e relatórios gerenciais em tempo real.</p>
+        </div>
+
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 16l3-4 3 3 3-5"/><circle cx="7" cy="16" r="1" fill="currentColor" stroke="none"/><circle cx="10" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="13" cy="15" r="1" fill="currentColor" stroke="none"/><circle cx="16" cy="10" r="1" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <h3>Business Intelligence &amp; Análise de Dados</h3>
+          <p>Transformamos dados brutos do seu negócio em <strong>insights estratégicos acionáveis</strong> por meio de um processo estruturado em quatro etapas:</p>
+          <ul class="service-bi-steps">
+            <li>
+              <span class="bi-step-num">01</span>
+              <span><strong>Coleta &amp; Integração</strong> — Consolidamos dados de ERP, planilhas, sistemas bancários e fontes externas em um único ambiente.</span>
+            </li>
+            <li>
+              <span class="bi-step-num">02</span>
+              <span><strong>Tratamento &amp; Modelagem</strong> — Limpeza, padronização e estruturação dos dados em modelos analíticos confiáveis.</span>
+            </li>
+            <li>
+              <span class="bi-step-num">03</span>
+              <span><strong>Análise &amp; KPIs</strong> — Definição e monitoramento de indicadores-chave: margem, CAC, LTV, EBITDA, giro de estoque e muito mais.</span>
+            </li>
+            <li>
+              <span class="bi-step-num">04</span>
+              <span><strong>Dashboards Interativos</strong> — Painéis visuais em tempo real (Power BI / Google Looker) para decisões rápidas e fundamentadas.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>BPO Financeiro</h3>
+          <p>Terceirização completa do setor financeiro: sua empresa foca no core business enquanto a AMRZ cuida de toda a operação financeira.</p>
+        </div>
+
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h3>Consultoria Financeira</h3>
+          <p>Diagnóstico financeiro aprofundado e plano de ação personalizado para melhorar lucratividade, reduzir custos e maximizar resultados.</p>
+        </div>
+
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Planejamento Orçamentário</h3>
+          <p>Construção e acompanhamento de orçamentos anuais com análise de desvios e projeções para tomada de decisão estratégica.</p>
+        </div>
+
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Análise de Viabilidade</h3>
+          <p>Estudos detalhados de viabilidade econômico-financeira para novos projetos, expansões e investimentos com análise de risco e retorno.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SOBRE ==================== -->
+<section id="sobre" aria-labelledby="sobre-title">
+  <div style="padding:100px 0;background:var(--white);">
+    <div class="container">
+      <div class="about-inner">
+        <!-- Visual -->
+        <div class="about-visual fade-up" aria-hidden="true">
+          <div class="about-card-main">
+            <div class="about-card-label">Nossa Trajetória</div>
+            <div class="about-card-value">+8</div>
+            <div class="about-card-desc">Anos transformando a gestão financeira de empresas em todo o Espírito Santo e região.</div>
+            <div class="about-stats-row">
+              <div class="about-stat-box">
+                <div class="num">+150</div>
+                <div class="lbl">Clientes ativos</div>
+              </div>
+              <div class="about-stat-box">
+                <div class="num">R$50M+</div>
+                <div class="lbl">Gerenciados/ano</div>
+              </div>
+              <div class="about-stat-box">
+                <div class="num">98%</div>
+                <div class="lbl">Taxa de retenção</div>
+              </div>
+              <div class="about-stat-box">
+                <div class="num">3x</div>
+                <div class="lbl">Retorno médio</div>
+              </div>
+            </div>
+          </div>
+          <div class="about-floating" aria-hidden="true">
+            <div class="num">5★</div>
+            <div class="lbl">Avaliação média</div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="about-content fade-up">
+          <div class="section-label">Sobre a AMRZ</div>
+          <h2 class="section-title" id="sobre-title">Especialistas que Entendem <span>Seu Negócio</span></h2>
+          <p class="section-subtitle">Nascemos com a missão de democratizar a gestão financeira profissional — tornando acessível às empresas o nível de estrutura que antes era exclusivo de grandes corporações.</p>
+
+          <div class="about-features">
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <div class="about-feature-text">
+                <h4>Método Próprio AMRZ</h4>
+                <p>Metodologia desenvolvida ao longo de anos de prática, adaptada à realidade do mercado brasileiro.</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+              </div>
+              <div class="about-feature-text">
+                <h4>Equipe Multidisciplinar</h4>
+                <p>Contadores, analistas financeiros e consultores de negócios trabalhando em sinergia pelo seu resultado.</p>
+              </div>
+            </div>
+            <div class="about-feature">
+              <div class="about-feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M1 6s1-1 4-1 5 2 8 2 4-1 4-1V2s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M1 14s1-1 4-1 5 2 8 2 4-1 4-1V10s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M1 22s1-1 4-1 5 2 8 2 4-1 4-1v-4s-1 1-4 1-5-2-8-2-4 1-4 1z"/></svg>
+              </div>
+              <div class="about-feature-text">
+                <h4>Tecnologia de Ponta</h4>
+                <p>Sistemas modernos de BI e dashboards em tempo real para acompanhar os indicadores do seu negócio.</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="#equipe" class="btn btn-outline-dark">
+            Conheça Nossa Equipe
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== DIFERENCIAIS ==================== -->
+<section id="diferenciais" aria-labelledby="dif-title">
+  <div class="container dif-inner">
+    <div class="dif-header fade-up">
+      <div class="section-label">Por Que Escolher a AMRZ</div>
+      <h2 class="section-title" id="dif-title" style="color:var(--white);">Nossos <span>Diferenciais</span></h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,.55);margin:0 auto;text-align:center;">O que nos separa de uma consultoria comum e nos torna parceiros estratégicos do seu sucesso.</p>
+    </div>
+
+    <div class="dif-grid">
+      <div class="dif-card fade-up">
+        <div class="dif-icon">
+          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>Resultados Rápidos</h3>
+        <p>Primeiros relatórios e diagnósticos entregues em até 7 dias úteis após o início do atendimento.</p>
+      </div>
+      <div class="dif-card fade-up">
+        <div class="dif-icon">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+        <h3>Atendimento Personalizado</h3>
+        <p>Cada cliente tem um consultor dedicado que conhece profundamente seu negócio e setor.</p>
+      </div>
+      <div class="dif-card fade-up">
+        <div class="dif-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        </div>
+        <h3>Segurança &amp; Sigilo</h3>
+        <p>Contratos de confidencialidade, dados criptografados e processos auditados em conformidade com a LGPD.</p>
+      </div>
+      <div class="dif-card fade-up">
+        <div class="dif-icon">
+          <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <h3>ROI Comprovado</h3>
+        <p>Nossos clientes apresentam em média 3x de retorno sobre o investimento no primeiro ano de parceria.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== DEPOIMENTOS ==================== -->
+<section id="equipe" aria-labelledby="equipe-title">
+  <div style="padding:100px 0;background:var(--off-white);">
+    <div class="container">
+      <div class="test-header fade-up">
+        <div class="section-label">Nossa Equipe</div>
+        <h2 class="section-title" id="equipe-title">Conhecendo Nossa <span>Equipe</span></h2>
+        <p class="section-subtitle">Experiência sólida, formação robusta e comprometimento com cada cliente.</p>
+      </div>
+
+      <!-- PERFIL ANGELO MARCOS RIZZO -->
+      <div class="equipe-card fade-up">
+
+        <!-- Topo navy -->
+        <div class="eq-top">
+          <div class="eq-avatar">AMR</div>
+          <div class="eq-info">
+            <h3 class="eq-name">Angelo Marcos Rizzo</h3>
+            <p class="eq-role">Fundador &amp; Consultor Principal</p>
+            <div class="eq-badges">
+              <span class="eq-badge eq-badge-gold">38+ anos de experiência</span>
+              <span class="eq-badge">CPA-10 ANBIMA</span>
+              <span class="eq-badge">Cachoeiro de Itapemirim – ES</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Corpo -->
+        <div class="eq-body">
+
+          <!-- Resumo -->
+          <p class="eq-summary">Executivo com mais de 38 anos de experiência em gestão financeira, comercial e administrativa, sendo <strong>29 anos dedicados ao Banco do Brasil S.A.</strong> — maior instituição financeira do país —, onde liderou agências de grande porte, equipes multidisciplinares e carteiras corporativas com faturamento acima de R$ 40 milhões/ano. Perfil analítico, orientado a resultados e com forte capacidade de liderança em ambientes de alta complexidade.</p>
+
+          <!-- Banco do Brasil -->
+          <div class="eq-bb-block">
+            <div class="eq-bb-header">
+              <div class="eq-bb-logo">BB</div>
+              <div>
+                <div class="eq-bb-title">Banco do Brasil S.A.</div>
+                <div class="eq-bb-period">1987 – 2016 &nbsp;·&nbsp; 29 anos de carreira</div>
+              </div>
+              <span class="eq-bb-tag">Principal Destaque</span>
+            </div>
+            <div class="eq-bb-grid">
+              <div class="eq-bb-item"><span class="eq-dot"></span>Gerente Geral de 5 agências em ES e RJ ao longo de 16 anos</div>
+              <div class="eq-bb-item"><span class="eq-dot"></span>Liderança de equipes de até 40 colaboradores</div>
+              <div class="eq-bb-item"><span class="eq-dot"></span>Carteiras corporativas com faturamento acima de R$ 40 mi/ano</div>
+              <div class="eq-bb-item"><span class="eq-dot"></span>Gerente de Negócios — Superintendência Regional (RJ)</div>
+              <div class="eq-bb-item"><span class="eq-dot"></span>Gerente de Compliance e Controles Internos</div>
+              <div class="eq-bb-item"><span class="eq-dot"></span>Agência de Cachoeiro — uma das maiores da Superintendência Regional</div>
+            </div>
+          </div>
+
+          <!-- Outras experiências -->
+          <div class="eq-other-block">
+            <div class="eq-block-title">Atuação pós-BB — Setor de Rochas Ornamentais &amp; Consultoria</div>
+            <div class="eq-tags-row">
+              <div class="eq-tag"><strong>Gran'Pares</strong><span>2017 – 2019</span></div>
+              <div class="eq-tag"><strong>ANGRAMAR</strong><span>2023 – 2024</span></div>
+              <div class="eq-tag"><strong>Itaunas Rochas</strong><span>2024 – 2025</span></div>
+              <div class="eq-tag"><strong>Pemagran</strong><span>2025</span></div>
+              <div class="eq-tag eq-tag-gold"><strong>MARIZZ – Gestão e Finanças</strong><span>2020 – atual</span></div>
+            </div>
+          </div>
+
+          <div class="eq-divider"></div>
+
+          <!-- Formação -->
+          <div class="eq-other-block">
+            <div class="eq-block-title">Formação Acadêmica</div>
+            <div class="eq-form-grid">
+              <div class="eq-form-item"><strong>MBA — PUCRS</strong><span>Vendas, Negociação e Alta Performance (em curso)</span></div>
+              <div class="eq-form-item"><strong>Pós-Graduação — FGV</strong><span>Gestão Financeira, Auditoria e Controladoria</span></div>
+              <div class="eq-form-item"><strong>MBA — IAG/PUC-Rio</strong><span>Gestão Empresarial (in company BB) · 2001/2002</span></div>
+              <div class="eq-form-item"><strong>Graduação — Direito</strong><span>Universidade Salgado de Oliveira · 2005</span></div>
+            </div>
+          </div>
+
+          <div class="eq-divider"></div>
+
+          <!-- Certificações -->
+          <div class="eq-block-title" style="margin-bottom:12px;">Certificações de Destaque</div>
+          <div class="eq-certs-row">
+            <span class="eq-cert">CPA-10 ANBIMA</span>
+            <span class="eq-cert">Business Intelligence &amp; Análise de Dados</span>
+            <span class="eq-cert">Compliance &amp; Controles Internos</span>
+            <span class="eq-cert">Análise Financeira de Crédito</span>
+            <span class="eq-cert">Prevenção à Lavagem de Dinheiro</span>
+          </div>
+
+        </div><!-- /eq-body -->
+      </div><!-- /equipe-card -->
+
+      <div class="test-grid" style="display:none;">
+        <div class="test-card fade-up">
+          <div class="test-quote-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+          </div>
+          <div class="test-stars">
+            <svg class="test-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="test-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="test-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="test-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="test-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <blockquote>"Antes da AMRZ, eu não sabia se estava tendo lucro ou prejuízo. Em 3 meses, organizamos tudo, reduzimos despesas em 22% e hoje tenho um dashboard atualizado diariamente."</blockquote>
+          <div class="test-author">
+            <div class="test-avatar">RC</div>
+            <div class="test-info">
+              <div class="test-name">Roberto Campos</div>
+              <div class="test-role">CEO — Construtora Campos &amp; Filhos</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="test-card fade-up">
+          <div class="test-quote-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+          </div>
+          <div class="test-stars">
+            <svg class="test-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="test-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="test-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="test-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="test-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <blockquote>"O BPO financeiro da AMRZ foi um divisor de águas. Liberou meu tempo para focar em vendas e crescimento. Faturamento cresceu 40% no ano seguinte."</blockquote>
+          <div class="test-author">
+            <div class="test-avatar">AF</div>
+            <div class="test-info">
+              <div class="test-name">Ana Figueiredo</div>
+              <div class="test-role">Fundadora — Bella Indústria Têxtil</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="test-card fade-up">
+          <div class="test-quote-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+          </div>
+          <div class="test-stars">
+            <svg class="test-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="test-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="test-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="test-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="test-star" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <blockquote>"Precisávamos de um DRE confiável para apresentar a investidores. A AMRZ entregou em tempo recorde e com uma qualidade impecável. Fechamos o aporte!"</blockquote>
+          <div class="test-author">
+            <div class="test-avatar">LM</div>
+            <div class="test-info">
+              <div class="test-name">Lucas Martins</div>
+              <div class="test-role">Sócio-Diretor — TechVentures ES</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CTA ==================== -->
+<section id="cta" aria-labelledby="cta-title">
+  <div class="container">
+    <div class="cta-inner fade-up">
+      <h2 id="cta-title">Pronto para Transformar suas Finanças?</h2>
+      <p>Agende uma conversa gratuita com um de nossos especialistas e descubra como a AMRZ pode impulsionar os resultados da sua empresa.</p>
+      <div class="cta-actions">
+        <a href="https://wa.me/5528999691480" target="_blank" rel="noopener" class="btn btn-cta-primary">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.528 5.858L0 24l6.335-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.855 0-3.596-.502-5.096-1.373l-.365-.217-3.762.896.944-3.658-.237-.378A9.965 9.965 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+          Consultoria Gratuita pelo WhatsApp
+        </a>
+        <a href="#contato" class="btn btn-cta-outline">
+          Enviar Mensagem
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTATO ==================== -->
+<section id="contato" aria-labelledby="contato-title">
+  <div style="padding:100px 0;background:var(--white);">
+    <div class="container">
+      <div class="contact-inner">
+        <!-- Info -->
+        <div class="contact-info fade-up">
+          <div class="section-label">Entre em Contato</div>
+          <h2 class="section-title" id="contato-title">Vamos Conversar Sobre Seu <span>Negócio</span></h2>
+          <p class="section-subtitle">Estamos prontos para entender seus desafios e apresentar as melhores soluções para sua empresa.</p>
+
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-.79a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div class="contact-item-text">
+                <h4>WhatsApp &amp; WhatsApp Business</h4>
+                <a href="https://wa.me/5528999691480">(28) 99969.1480</a> — WhatsApp<br/>
+                <a href="https://wa.me/5528999106532">(28) 99910.6532</a> — WhatsApp Business
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div class="contact-item-text">
+                <h4>E-mail</h4>
+                <a href="mailto:marcos@marizz.com.br">marcos@marizz.com.br</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="contact-item-text">
+                <h4>Localização</h4>
+                <p>Espírito Santo, Brasil<br>Atendimento presencial e remoto</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="contact-item-text">
+                <h4>Horário de Atendimento</h4>
+                <p>Segunda a Sexta: 8h às 18h<br>Sábado: 9h às 12h</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="contact-form fade-up" role="region" aria-label="Formulário de contato">
+          <h3>Envie uma Mensagem</h3>
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nome">Nome *</label>
+                <input type="text" id="nome" name="nome" class="form-control" placeholder="Seu nome completo" required />
+              </div>
+              <div class="form-group">
+                <label for="empresa">Empresa</label>
+                <input type="text" id="empresa" name="empresa" class="form-control" placeholder="Nome da empresa" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail *</label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="seu@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="telefone">WhatsApp / Telefone</label>
+              <input type="tel" id="telefone" name="telefone" class="form-control" placeholder="(28) 99999-9999" />
+            </div>
+            <div class="form-group">
+              <label for="servico">Serviço de Interesse</label>
+              <select id="servico" name="servico" class="form-control">
+                <option value="">Selecione um serviço...</option>
+                <option>Gestão Financeira Empresarial</option>
+                <option>DRE &amp; Fluxo de Caixa</option>
+                <option>BPO Financeiro</option>
+                <option>Consultoria Financeira</option>
+                <option>Planejamento Orçamentário</option>
+                <option>Análise de Viabilidade</option>
+                <option>Outros</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="mensagem">Mensagem *</label>
+              <textarea id="mensagem" name="mensagem" class="form-control" placeholder="Conte um pouco sobre os desafios financeiros do seu negócio..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Enviar Mensagem
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon">A</div>
+          <div class="logo-text">
+            <strong>AMRZ</strong>
+            <span>Gestão &amp; Finanças</span>
+          </div>
+        </div>
+        <p>Transformamos dados financeiros em decisões estratégicas que impulsionam o crescimento sustentável do seu negócio.</p>
+        <div class="footer-social">
+          <!-- Instagram -->
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M17.5 6.5h.01"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="#" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="#servicos">Gestão Financeira</a></li>
+          <li><a href="#servicos">DRE &amp; Fluxo de Caixa</a></li>
+          <li><a href="#servicos">BPO Financeiro</a></li>
+          <li><a href="#servicos">Consultoria</a></li>
+          <li><a href="#servicos">Planejamento</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#sobre">Sobre a AMRZ</a></li>
+          <li><a href="#diferenciais">Diferenciais</a></li>
+          <li><a href="#equipe">Nossa Equipe</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5528999691480">(28) 99969.1480</a></li>
+          <li><a href="https://wa.me/5528999106532">(28) 99910.6532</a></li>
+          <li><a href="mailto:marcos@marizz.com.br">marcos@marizz.com.br</a></li>
+          <li><a href="#">Espírito Santo, Brasil</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 AMRZ — Gestão e Finanças. Todos os direitos reservados.</p>
+      <p>Desenvolvido com excelência para <a href="#">AMRZ</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== WHATSAPP BUTTON ==================== -->
+<a href="https://wa.me/5528999691480" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.528 5.858L0 24l6.335-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.855 0-3.596-.502-5.096-1.373l-.365-.217-3.762.896.944-3.658-.237-.378A9.965 9.965 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+</a>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+  // Header scroll effect
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Mobile nav
+  function openMobileNav() {
+    document.getElementById('mobileNav').classList.add('open');
+    document.getElementById('hamburgerBtn').setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMobileNav() {
+    document.getElementById('mobileNav').classList.remove('open');
+    document.getElementById('hamburgerBtn').setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  // Intersection Observer for fade-up animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Form submission
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.form-submit');
+    const nome = this.nome.value.trim();
+    const email = this.email.value.trim();
+    const mensagem = this.mensagem.value.trim();
+
+    if (!nome || !email || !mensagem) {
+      alert('Por favor, preencha os campos obrigatórios: Nome, E-mail e Mensagem.');
+      return;
+    }
+
+    btn.innerHTML = `
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;">
+        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+      Mensagem Enviada!
+    `;
+    btn.style.background = '#22c55e';
+    btn.disabled = true;
+
+    setTimeout(() => {
+      this.reset();
+      btn.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;">
+          <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+        Enviar Mensagem
+      `;
+      btn.style.background = '';
+      btn.disabled = false;
+    }, 3000);
+  });
+
+  // Smooth bar chart animation on hero
+  document.querySelectorAll('.dash-bar').forEach((bar, i) => {
+    const h = bar.style.height;
+    bar.style.height = '0';
+    setTimeout(() => {
+      bar.style.transition = 'height .8s cubic-bezier(.4,0,.2,1)';
+      bar.style.height = h;
+    }, 600 + i * 100);
+  });
+</script>
+
+</body>
+</html>
