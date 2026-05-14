@@ -125,6 +125,30 @@
       border-color: var(--white);
       transform: translateY(-2px);
     }
+    .btn-agro {
+      background: linear-gradient(135deg, #2D6A4F, #1B4332);
+      color: #E9C46A;
+      border-color: #40916C;
+      font-size: .85rem;
+      padding: 11px 20px;
+    }
+    .btn-agro:hover {
+      background: linear-gradient(135deg, #40916C, #2D6A4F);
+      border-color: #E9C46A;
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(29,67,50,.4);
+    }
+    .btn-agro .agro-badge {
+      background: rgba(233,196,106,.2);
+      border: 1px solid rgba(233,196,106,.4);
+      border-radius: 20px;
+      padding: 2px 8px;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
     .btn-outline-dark {
       background: transparent;
       color: var(--navy);
@@ -1485,6 +1509,7 @@
       .dif-grid   { grid-template-columns: 1fr; }
       .hero-actions { flex-direction: column; }
       .cta-actions  { flex-direction: column; align-items: center; }
+      .btn-agro { align-self: flex-start; }
     }
   </style>
 </head>
@@ -1561,6 +1586,11 @@
           <a href="#servicos" class="btn btn-outline">
             Nossos Serviços
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="agro.html" class="btn btn-agro" title="Soluções para o Agronegócio">
+            🌾
+            <span>Agronegócio</span>
+            <span class="agro-badge">Ver soluções</span>
           </a>
         </div>
 

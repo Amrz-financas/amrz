@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MARIZZ Agronegócio — Gestão financeira especializada para produtores rurais, cooperativas, agroindústrias e pecuaristas no Espírito Santo." />
+  <title>MARIZZ Agronegócio — Gestão Financeira para o Campo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:   #1B4332;
+      --green-mid:    #2D6A4F;
+      --green-light:  #40916C;
+      --green-soft:   #74C69D;
+      --wheat:        #E9C46A;
+      --wheat-light:  #F4D58D;
+      --wheat-pale:   #FDF3D7;
+      --earth:        #8B5E3C;
+      --earth-light:  #A97C50;
+      --white:        #FFFFFF;
+      --off-white:    #F4F7F4;
+      --gray-100:     #E8EEE9;
+      --gray-300:     #B8CCBB;
+      --gray-500:     #6B8570;
+      --gray-700:     #3A5240;
+      --text-dark:    #1B3A2A;
+      --text-body:    #3A5240;
+      --radius-sm:    8px;
+      --radius-md:    14px;
+      --radius-lg:    24px;
+      --shadow-sm:    0 2px 12px rgba(27,67,50,.08);
+      --shadow-md:    0 8px 32px rgba(27,67,50,.14);
+      --shadow-lg:    0 20px 60px rgba(27,67,50,.20);
+      --transition:   .3s cubic-bezier(.4,0,.2,1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text-body); background: var(--white); line-height: 1.65; overflow-x: hidden; }
+    img  { max-width: 100%; display: block; }
+    a    { text-decoration: none; color: inherit; }
+    ul   { list-style: none; }
+
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---- TYPOGRAPHY ---- */
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .78rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--wheat); margin-bottom: 14px;
+    }
+    .section-label::before { content: ''; display: inline-block; width: 28px; height: 2px; background: var(--wheat); border-radius: 2px; }
+    h2.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); color: var(--text-dark); line-height: 1.25; margin-bottom: 18px; }
+    h2.section-title span { color: var(--green-light); }
+    .section-subtitle { font-size: 1.05rem; color: var(--gray-500); max-width: 560px; line-height: 1.7; }
+
+    /* ---- BUTTONS ---- */
+    .btn { display: inline-flex; align-items: center; gap: 9px; padding: 14px 28px; border-radius: 50px; font-size: .95rem; font-weight: 600; cursor: pointer; border: 2px solid transparent; transition: var(--transition); }
+    .btn-primary { background: var(--wheat); color: var(--green-dark); }
+    .btn-primary:hover { background: var(--wheat-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(233,196,106,.4); }
+    .btn-outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,.45); }
+    .btn-outline:hover { background: rgba(255,255,255,.1); border-color: var(--white); transform: translateY(-2px); }
+    .btn-outline-dark { background: transparent; color: var(--green-dark); border-color: var(--green-mid); }
+    .btn-outline-dark:hover { background: var(--green-dark); color: var(--white); }
+    .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ---- BACK LINK ---- */
+    .back-bar {
+      background: var(--green-dark);
+      padding: 10px 0;
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1001;
+    }
+    .back-inner { display: flex; align-items: center; justify-content: space-between; }
+    .back-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .82rem; color: rgba(255,255,255,.7); font-weight: 500;
+      transition: var(--transition);
+    }
+    .back-link:hover { color: var(--wheat); }
+    .back-link svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .back-badge {
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--wheat);
+    }
+
+    /* ---- HEADER ---- */
+    #header {
+      position: fixed; top: 38px; left: 0; right: 0;
+      z-index: 1000; padding: 16px 0; transition: var(--transition);
+    }
+    #header.scrolled {
+      background: rgba(27,67,50,.97); backdrop-filter: blur(12px);
+      padding: 10px 0; box-shadow: 0 4px 30px rgba(0,0,0,.25);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+    .logo { display: flex; align-items: center; gap: 12px; }
+    .logo-icon { width: 42px; height: 42px; background: var(--wheat); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--green-dark); }
+    .logo-text { display: flex; flex-direction: column; line-height: 1; }
+    .logo-text strong { font-size: 1.1rem; font-weight: 800; color: var(--white); letter-spacing: .04em; }
+    .logo-text span { font-size: .68rem; color: var(--wheat); letter-spacing: .12em; text-transform: uppercase; margin-top: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { font-size: .9rem; font-weight: 500; color: rgba(255,255,255,.75); transition: var(--transition); position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--wheat); transition: var(--transition); }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; border: none; background: none; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: var(--transition); }
+
+    /* ---- MOBILE NAV ---- */
+    .mobile-nav { display: none; position: fixed; inset: 0; background: var(--green-dark); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { font-size: 1.4rem; font-weight: 600; color: rgba(255,255,255,.8); }
+    .mobile-nav a:hover { color: var(--wheat); }
+    .mobile-nav-close { position: absolute; top: 24px; right: 28px; background: none; border: none; cursor: pointer; color: var(--white); font-size: 1.6rem; }
+
+    /* ---- HERO ---- */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 55%, #1A5C3A 100%);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding: 160px 0 80px;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(233,196,106,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(233,196,106,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+    .hero-orb-1 { width: 500px; height: 500px; background: rgba(233,196,106,.10); top: -120px; right: -100px; }
+    .hero-orb-2 { width: 350px; height: 350px; background: rgba(64,145,108,.3); bottom: -80px; left: -80px; }
+
+    .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; position: relative; z-index: 1; }
+
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(233,196,106,.15); border: 1px solid rgba(233,196,106,.3); border-radius: 50px; padding: 6px 16px; font-size: .78rem; font-weight: 600; color: var(--wheat); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 24px; }
+    .hero-badge-dot { width: 7px; height: 7px; background: var(--wheat); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .5; transform: scale(.8); } }
+
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4.5vw, 3.4rem); color: var(--white); line-height: 1.15; margin-bottom: 20px; }
+    .hero-title span { color: var(--wheat); }
+    .hero-desc { font-size: 1.08rem; color: rgba(255,255,255,.75); line-height: 1.75; margin-bottom: 36px; max-width: 480px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+    .hero-stats { display: flex; gap: 36px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,.1); }
+    .hero-stat-num { font-size: 2rem; font-weight: 800; color: var(--wheat); line-height: 1; }
+    .hero-stat-label { font-size: .78rem; color: rgba(255,255,255,.55); margin-top: 4px; text-transform: uppercase; letter-spacing: .06em; }
+
+    /* Hero visual */
+    .hero-visual { display: flex; align-items: center; justify-content: center; }
+    .hero-agro-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 20px;
+      padding: 30px;
+      width: 100%; max-width: 400px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 30px 80px rgba(0,0,0,.3);
+    }
+    .agro-card-title { font-size: .75rem; color: var(--wheat); text-transform: uppercase; letter-spacing: .1em; font-weight: 700; margin-bottom: 20px; }
+    .agro-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+    .agro-metric { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); border-radius: 10px; padding: 14px; }
+    .agro-metric-label { font-size: .7rem; color: rgba(255,255,255,.45); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 5px; }
+    .agro-metric-value { font-size: 1.1rem; font-weight: 700; color: var(--white); }
+    .agro-metric-value.up { color: #86efac; }
+    .agro-divider { height: 1px; background: rgba(255,255,255,.08); margin: 16px 0; }
+    .agro-segments { display: flex; flex-direction: column; gap: 10px; }
+    .agro-seg { display: flex; align-items: center; gap: 10px; }
+    .agro-seg-label { font-size: .8rem; color: rgba(255,255,255,.6); flex: 1; }
+    .agro-seg-bar-wrap { flex: 2; background: rgba(255,255,255,.08); border-radius: 4px; height: 6px; }
+    .agro-seg-bar { height: 6px; border-radius: 4px; background: var(--wheat); }
+    .agro-seg-pct { font-size: .75rem; color: var(--wheat); font-weight: 700; min-width: 32px; text-align: right; }
+
+    /* ---- PÚBLICO ATENDIDO ---- */
+    #publico { padding: 80px 0; background: var(--off-white); }
+    .publico-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 48px; }
+    .publico-card { background: var(--white); border-radius: var(--radius-md); padding: 28px 22px; border: 1px solid var(--gray-100); text-align: center; transition: var(--transition); }
+    .publico-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: rgba(233,196,106,.4); }
+    .publico-icon { width: 56px; height: 56px; background: var(--wheat-pale); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+    .publico-icon svg { width: 28px; height: 28px; stroke: var(--earth); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .publico-card h3 { font-size: .95rem; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
+    .publico-card p { font-size: .83rem; color: var(--gray-500); line-height: 1.6; }
+
+    /* ---- SERVIÇOS ---- */
+    #servicos { padding: 100px 0; background: var(--white); }
+    .services-header { text-align: center; margin-bottom: 56px; }
+    .services-header .section-label { justify-content: center; }
+    .services-header .section-label::before { display: none; }
+    .services-header .section-label::after { content: ''; display: inline-block; width: 28px; height: 2px; background: var(--wheat); border-radius: 2px; }
+    .services-header .section-subtitle { margin: 0 auto; text-align: center; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .service-card { background: var(--off-white); border-radius: var(--radius-md); padding: 32px 28px; border: 1px solid var(--gray-100); transition: var(--transition); position: relative; overflow: hidden; }
+    .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--green-light), var(--wheat)); transform: scaleX(0); transform-origin: left; transition: var(--transition); }
+    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: rgba(233,196,106,.3); background: var(--white); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon { width: 52px; height: 52px; background: var(--wheat-pale); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .service-icon svg { width: 26px; height: 26px; stroke: var(--earth); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .service-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+    .service-card p { font-size: .9rem; color: var(--gray-500); line-height: 1.65; }
+
+    /* ---- DIFERENCIAIS ---- */
+    #diferenciais { padding: 100px 0; background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%); position: relative; overflow: hidden; }
+    #diferenciais::before { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(233,196,106,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(233,196,106,.03) 1px, transparent 1px); background-size: 60px 60px; }
+    .dif-inner { position: relative; z-index: 1; }
+    .dif-header { text-align: center; margin-bottom: 56px; }
+    .dif-header h2 { color: var(--white); }
+    .dif-header .section-label { justify-content: center; }
+    .dif-header .section-label::before { display: none; }
+    .dif-header .section-label::after { content: ''; display: inline-block; width: 28px; height: 2px; background: var(--wheat); border-radius: 2px; }
+    .dif-header .section-subtitle { color: rgba(255,255,255,.55); margin: 0 auto; text-align: center; }
+    .dif-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .dif-card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius-md); padding: 32px 24px; text-align: center; transition: var(--transition); }
+    .dif-card:hover { background: rgba(255,255,255,.09); border-color: rgba(233,196,106,.35); transform: translateY(-4px); }
+    .dif-icon { width: 60px; height: 60px; background: rgba(233,196,106,.12); border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 1px solid rgba(233,196,106,.2); }
+    .dif-icon svg { width: 28px; height: 28px; stroke: var(--wheat); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .dif-card h3 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+    .dif-card p { font-size: .85rem; color: rgba(255,255,255,.5); line-height: 1.65; }
+
+    /* ---- CRÉDITO RURAL ---- */
+    #credito { padding: 100px 0; background: var(--off-white); }
+    .credito-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+    .credito-content .section-subtitle { margin-bottom: 28px; }
+    .credito-lines { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+    .credito-line { display: flex; gap: 14px; align-items: flex-start; }
+    .credito-tag { background: var(--green-dark); color: var(--wheat); font-size: .72rem; font-weight: 800; padding: 4px 10px; border-radius: 6px; flex-shrink: 0; margin-top: 2px; white-space: nowrap; }
+    .credito-line-text h4 { font-size: .9rem; font-weight: 700; color: var(--text-dark); margin-bottom: 2px; }
+    .credito-line-text p { font-size: .83rem; color: var(--gray-500); line-height: 1.5; }
+    .credito-visual { background: var(--green-dark); border-radius: var(--radius-lg); padding: 36px; color: var(--white); position: relative; overflow: hidden; }
+    .credito-visual::before { content: ''; position: absolute; top: -50px; right: -50px; width: 180px; height: 180px; background: rgba(233,196,106,.08); border-radius: 50%; }
+    .credito-visual-label { font-size: .75rem; color: var(--wheat); text-transform: uppercase; letter-spacing: .1em; font-weight: 700; margin-bottom: 10px; }
+    .credito-visual-value { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: var(--wheat); line-height: 1; margin-bottom: 6px; }
+    .credito-visual-desc { font-size: .88rem; color: rgba(255,255,255,.55); margin-bottom: 28px; }
+    .credito-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .credito-stat { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; padding: 16px; }
+    .credito-stat .num { font-size: 1.4rem; font-weight: 800; color: var(--white); }
+    .credito-stat .lbl { font-size: .73rem; color: rgba(255,255,255,.45); margin-top: 2px; }
+
+    /* ---- CTA ---- */
+    #cta { padding: 90px 0; background: linear-gradient(135deg, var(--wheat) 0%, var(--wheat-light) 50%, var(--wheat) 100%); position: relative; overflow: hidden; }
+    #cta::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1' fill='%231B4332' fill-opacity='.06'/%3E%3C/svg%3E"); }
+    .cta-inner { position: relative; z-index: 1; text-align: center; }
+    .cta-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); color: var(--green-dark); margin-bottom: 14px; }
+    .cta-inner p { font-size: 1.05rem; color: rgba(27,67,50,.7); max-width: 520px; margin: 0 auto 36px; line-height: 1.7; }
+    .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-cta-primary { background: var(--green-dark); color: var(--white); border-color: var(--green-dark); }
+    .btn-cta-primary:hover { background: var(--green-mid); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(27,67,50,.3); }
+    .btn-cta-outline { background: transparent; color: var(--green-dark); border-color: rgba(27,67,50,.35); }
+    .btn-cta-outline:hover { background: rgba(27,67,50,.08); }
+
+    /* ---- CONTATO ---- */
+    #contato { padding: 100px 0; background: var(--white); }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .contact-items { display: flex; flex-direction: column; gap: 20px; margin-top: 28px; }
+    .contact-item { display: flex; gap: 14px; align-items: flex-start; }
+    .contact-item-icon { width: 44px; height: 44px; background: var(--wheat-pale); border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .contact-item-icon svg { width: 20px; height: 20px; stroke: var(--earth); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .contact-item-text h4 { font-size: .88rem; font-weight: 700; color: var(--text-dark); margin-bottom: 2px; }
+    .contact-item-text p, .contact-item-text a { font-size: .9rem; color: var(--gray-500); }
+    .contact-item-text a:hover { color: var(--green-light); }
+    .contact-form { background: var(--off-white); border: 1px solid var(--gray-100); border-radius: var(--radius-lg); padding: 40px; }
+    .contact-form h3 { font-size: 1.2rem; font-weight: 700; color: var(--text-dark); margin-bottom: 24px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: .82rem; font-weight: 600; color: var(--text-dark); margin-bottom: 7px; }
+    .form-control { width: 100%; padding: 12px 16px; border: 1.5px solid var(--gray-100); border-radius: var(--radius-sm); font-family: 'Inter', sans-serif; font-size: .92rem; color: var(--text-dark); background: var(--white); transition: var(--transition); outline: none; }
+    .form-control:focus { border-color: var(--green-light); box-shadow: 0 0 0 3px rgba(64,145,108,.12); }
+    .form-control::placeholder { color: var(--gray-300); }
+    textarea.form-control { resize: vertical; min-height: 110px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .form-submit { width: 100%; margin-top: 8px; padding: 15px; justify-content: center; }
+
+    /* ---- FOOTER ---- */
+    footer { background: var(--green-dark); padding: 64px 0 32px; }
+    .footer-inner { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand p { font-size: .87rem; color: rgba(255,255,255,.45); line-height: 1.7; margin-top: 16px; max-width: 260px; }
+    .footer-social { display: flex; gap: 10px; margin-top: 24px; }
+    .footer-social a { width: 36px; height: 36px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; transition: var(--transition); }
+    .footer-social a:hover { background: var(--wheat); border-color: var(--wheat); }
+    .footer-social a svg { width: 16px; height: 16px; fill: rgba(255,255,255,.6); transition: var(--transition); }
+    .footer-social a:hover svg { fill: var(--green-dark); }
+    .footer-col h4 { font-size: .82rem; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 20px; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { font-size: .87rem; color: rgba(255,255,255,.45); transition: var(--transition); }
+    .footer-col ul li a:hover { color: var(--wheat); padding-left: 4px; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.08); padding-top: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: .82rem; color: rgba(255,255,255,.3); }
+    .footer-bottom a { color: var(--wheat); }
+
+    /* ---- WHATSAPP FLOAT ---- */
+    .whatsapp-float { position: fixed; bottom: 28px; right: 28px; z-index: 999; width: 58px; height: 58px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 28px rgba(37,211,102,.4); transition: var(--transition); animation: float 3s ease-in-out infinite; }
+    .whatsapp-float:hover { transform: scale(1.1); animation: none; }
+    .whatsapp-float svg { width: 30px; height: 30px; fill: var(--white); }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+    /* ---- ANIMATIONS ---- */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity .65s ease, transform .65s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .dif-grid      { grid-template-columns: repeat(2, 1fr); }
+      .publico-grid  { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner  { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      .hero-inner     { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual    { display: none; }
+      .credito-inner  { grid-template-columns: 1fr; gap: 40px; }
+      .contact-inner  { grid-template-columns: 1fr; gap: 40px; }
+      .services-grid  { grid-template-columns: 1fr; }
+      .dif-grid       { grid-template-columns: 1fr 1fr; }
+      .publico-grid   { grid-template-columns: 1fr 1fr; }
+      .nav-links      { display: none; }
+      .hamburger      { display: flex; }
+      .footer-inner   { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom  { flex-direction: column; text-align: center; }
+      .form-row       { grid-template-columns: 1fr; }
+      .contact-form   { padding: 28px 22px; }
+    }
+    @media (max-width: 480px) {
+      .dif-grid       { grid-template-columns: 1fr; }
+      .publico-grid   { grid-template-columns: 1fr; }
+      .hero-actions   { flex-direction: column; }
+      .cta-actions    { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- BACK BAR -->
+<div class="back-bar">
+  <div class="container back-inner">
+    <a href="index.html" class="back-link">
+      <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Voltar ao site principal
+    </a>
+    <span class="back-badge">🌾 Setor Agronegócio</span>
+  </div>
+</div>
+
+<!-- MOBILE NAV -->
+<nav class="mobile-nav" id="mobileNav" role="dialog" aria-label="Menu de navegação">
+  <button class="mobile-nav-close" onclick="closeMobileNav()" aria-label="Fechar menu">✕</button>
+  <a href="#publico"      onclick="closeMobileNav()">Público</a>
+  <a href="#servicos"     onclick="closeMobileNav()">Serviços</a>
+  <a href="#diferenciais" onclick="closeMobileNav()">Diferenciais</a>
+  <a href="#credito"      onclick="closeMobileNav()">Crédito Rural</a>
+  <a href="#contato"      onclick="closeMobileNav()">Contato</a>
+</nav>
+
+<!-- HEADER -->
+<header id="header" role="banner">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="agro.html" class="logo" aria-label="MARIZZ Agronegócio">
+        <div class="logo-icon">M</div>
+        <div class="logo-text">
+          <strong>MARIZZ</strong>
+          <span>Agronegócio</span>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="#publico">Público</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#diferenciais">Diferenciais</a>
+        <a href="#credito">Crédito Rural</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <a href="#contato" class="btn btn-primary" style="padding:11px 22px;font-size:.85rem;">Fale Conosco</a>
+      <button class="hamburger" onclick="openMobileNav()" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero" role="main">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Gestão Financeira para o Agronegócio
+        </div>
+        <h1 class="hero-title">
+          Gestão Financeira que <span>Entende o Campo</span>
+        </h1>
+        <p class="hero-desc">Da porteira para dentro, a MARIZZ estrutura as finanças do seu negócio rural com expertise de quem já gerenciou carteiras de agronegócio no Banco do Brasil por 29 anos.</p>
+        <div class="hero-actions">
+          <a href="https://wa.me/5528999691480" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.528 5.858L0 24l6.335-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.855 0-3.596-.502-5.096-1.373l-.365-.217-3.762.896.944-3.658-.237-.378A9.965 9.965 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+            Falar no WhatsApp
+          </a>
+          <a href="#servicos" class="btn btn-outline">
+            Ver Serviços
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat-item">
+            <div class="hero-stat-num">29</div>
+            <div class="hero-stat-label">Anos no Banco do Brasil</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="hero-stat-num">+38</div>
+            <div class="hero-stat-label">Anos de Experiência</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="hero-stat-num">4</div>
+            <div class="hero-stat-label">Segmentos Atendidos</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual card -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-agro-card">
+          <div class="agro-card-title">🌾 Gestão Rural — Visão Geral</div>
+          <div class="agro-metrics">
+            <div class="agro-metric">
+              <div class="agro-metric-label">Receita Safra</div>
+              <div class="agro-metric-value up">▲ R$ 1,2M</div>
+            </div>
+            <div class="agro-metric">
+              <div class="agro-metric-label">Custo/Hectare</div>
+              <div class="agro-metric-value">R$ 4.800</div>
+            </div>
+            <div class="agro-metric">
+              <div class="agro-metric-label">Margem</div>
+              <div class="agro-metric-value up">▲ 31%</div>
+            </div>
+            <div class="agro-metric">
+              <div class="agro-metric-label">Crédito Rural</div>
+              <div class="agro-metric-value">Ativo</div>
+            </div>
+          </div>
+          <div class="agro-divider"></div>
+          <div class="agro-segments">
+            <div class="agro-seg">
+              <span class="agro-seg-label">Lavoura</span>
+              <div class="agro-seg-bar-wrap"><div class="agro-seg-bar" style="width:72%"></div></div>
+              <span class="agro-seg-pct">72%</span>
+            </div>
+            <div class="agro-seg">
+              <span class="agro-seg-label">Pecuária</span>
+              <div class="agro-seg-bar-wrap"><div class="agro-seg-bar" style="width:18%"></div></div>
+              <span class="agro-seg-pct">18%</span>
+            </div>
+            <div class="agro-seg">
+              <span class="agro-seg-label">Outros</span>
+              <div class="agro-seg-bar-wrap"><div class="agro-seg-bar" style="width:10%"></div></div>
+              <span class="agro-seg-pct">10%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PÚBLICO ATENDIDO -->
+<section id="publico" aria-labelledby="publico-title">
+  <div style="padding:80px 0;background:var(--off-white);">
+    <div class="container">
+      <div class="services-header fade-up">
+        <div class="section-label">Quem Atendemos</div>
+        <h2 class="section-title" id="publico-title">Soluções para Todo o <span>Agronegócio</span></h2>
+        <p class="section-subtitle">Do produtor familiar à agroindústria — a MARIZZ tem a solução financeira certa para cada realidade do campo.</p>
+      </div>
+      <div class="publico-grid">
+        <div class="publico-card fade-up">
+          <div class="publico-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Produtores Rurais</h3>
+          <p>Organização financeira da propriedade, controle de custos por safra e planejamento de crédito rural.</p>
+        </div>
+        <div class="publico-card fade-up">
+          <div class="publico-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3>Cooperativas Agrícolas</h3>
+          <p>Gestão financeira, BPO e consultoria estratégica para cooperativas de produtores.</p>
+        </div>
+        <div class="publico-card fade-up">
+          <div class="publico-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+          </div>
+          <h3>Agroindústrias</h3>
+          <p>Controle de custos industriais, margem de beneficiamento e planejamento financeiro integrado.</p>
+        </div>
+        <div class="publico-card fade-up">
+          <div class="publico-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          </div>
+          <h3>Pecuaristas</h3>
+          <p>Custo por cabeça, margem por ciclo produtivo e gestão financeira da atividade pecuária.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos" aria-labelledby="servicos-title">
+  <div style="padding:100px 0;background:var(--white);">
+    <div class="container">
+      <div class="services-header fade-up">
+        <div class="section-label">Nossos Serviços</div>
+        <h2 class="section-title" id="servicos-title">Soluções Financeiras <span>para o Campo</span></h2>
+        <p class="section-subtitle">Serviços desenhados para a realidade do produtor rural e do agronegócio brasileiro.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Gestão Financeira Rural</h3>
+          <p>Controle completo das finanças da propriedade: custos por safra/ciclo, contas a pagar e receber, conciliação bancária e relatórios gerenciais adaptados ao campo.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 16l3-4 3 3 3-5"/></svg>
+          </div>
+          <h3>Business Intelligence Agrícola</h3>
+          <p>Análise de dados de produção, preços de commodities e dashboards interativos com KPIs por talhão, rebanho ou unidade produtiva — decisões baseadas em dados reais.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>BPO Financeiro Rural</h3>
+          <p>Terceirização completa do setor financeiro para fazendas, cooperativas e agroindústrias — você foca na produção, a MARIZZ cuida das finanças.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <h3>Consultoria em Crédito Rural</h3>
+          <p>Estruturação e acompanhamento de operações via Pronaf, Pronamp, CPR, FCO Rural e demais linhas — aproveitando ao máximo as condições do sistema financeiro.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Planejamento de Safra</h3>
+          <p>Orçamento detalhado por ciclo produtivo, gestão de custos por hectare/cabeça e projeções de rentabilidade para suporte à tomada de decisão.</p>
+        </div>
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Análise de Viabilidade</h3>
+          <p>Estudos econômico-financeiros para expansão de área, novos cultivos, aquisição de maquinário e investimentos em infraestrutura rural — com análise de risco e retorno.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais" aria-labelledby="dif-title">
+  <div class="container dif-inner">
+    <div class="dif-header fade-up">
+      <div class="section-label">Por Que a MARIZZ</div>
+      <h2 class="section-title" id="dif-title" style="color:var(--white);">Diferenciais para o <span>Agronegócio</span></h2>
+      <p class="section-subtitle">O que nos torna o parceiro financeiro ideal para o produtor rural e o agronegócio do ES.</p>
+    </div>
+    <div class="dif-grid">
+      <div class="dif-card fade-up">
+        <div class="dif-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Expertise em Crédito Rural</h3>
+        <p>29 anos gerenciando carteiras de agronegócio no Banco do Brasil — conhecemos profundamente as linhas e condições do crédito rural brasileiro.</p>
+      </div>
+      <div class="dif-card fade-up">
+        <div class="dif-icon">
+          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>Resultados Rápidos</h3>
+        <p>Diagnóstico financeiro da propriedade e primeiros relatórios entregues em até 7 dias úteis após o início do atendimento.</p>
+      </div>
+      <div class="dif-card fade-up">
+        <div class="dif-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        </div>
+        <h3>Sigilo e Segurança</h3>
+        <p>Dados da sua propriedade e operações protegidos com total confidencialidade e conformidade com a LGPD.</p>
+      </div>
+      <div class="dif-card fade-up">
+        <div class="dif-icon">
+          <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Linguagem do Campo</h3>
+        <p>Relatórios e análises traduzidos para a realidade do produtor — sem jargões financeiros, com foco no que importa para o negócio rural.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRÉDITO RURAL -->
+<section id="credito" aria-labelledby="credito-title">
+  <div style="padding:100px 0;background:var(--off-white);">
+    <div class="container">
+      <div class="credito-inner">
+        <div class="credito-content fade-up">
+          <div class="section-label">Crédito Rural</div>
+          <h2 class="section-title" id="credito-title">Acesse as Melhores <span>Linhas de Crédito</span></h2>
+          <p class="section-subtitle">Com quem conhece o sistema financeiro por dentro, você estrutura operações de crédito rural com melhores condições e menor burocracia.</p>
+          <div class="credito-lines">
+            <div class="credito-line">
+              <span class="credito-tag">PRONAF</span>
+              <div class="credito-line-text">
+                <h4>Programa Nacional da Agricultura Familiar</h4>
+                <p>Crédito para agricultores familiares com juros subsidiados e condições especiais.</p>
+              </div>
+            </div>
+            <div class="credito-line">
+              <span class="credito-tag">PRONAMP</span>
+              <div class="credito-line-text">
+                <h4>Programa Nacional de Apoio ao Médio Produtor</h4>
+                <p>Financiamento para médios produtores rurais com taxas diferenciadas.</p>
+              </div>
+            </div>
+            <div class="credito-line">
+              <span class="credito-tag">CPR</span>
+              <div class="credito-line-text">
+                <h4>Cédula do Produtor Rural</h4>
+                <p>Instrumento de crédito vinculado à produção agrícola futura.</p>
+              </div>
+            </div>
+            <div class="credito-line">
+              <span class="credito-tag">FCO Rural</span>
+              <div class="credito-line-text">
+                <h4>Fundo Constitucional do Centro-Oeste</h4>
+                <p>Financiamento para atividades rurais com condições favoráveis na região.</p>
+              </div>
+            </div>
+          </div>
+          <a href="#contato" class="btn btn-outline-dark">
+            Consultar Crédito Rural
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <div class="credito-visual fade-up" aria-hidden="true">
+          <div class="credito-visual-label">Experiência em Agronegócio</div>
+          <div class="credito-visual-value">29 anos</div>
+          <div class="credito-visual-desc">Gerenciando carteiras de agronegócio no Banco do Brasil — ES e RJ.</div>
+          <div class="credito-stats">
+            <div class="credito-stat"><div class="num">R$40M+</div><div class="lbl">Carteiras gerenciadas/ano</div></div>
+            <div class="credito-stat"><div class="num">5</div><div class="lbl">Agências lideradas</div></div>
+            <div class="credito-stat"><div class="num">CPA-10</div><div class="lbl">Certificação ANBIMA</div></div>
+            <div class="credito-stat"><div class="num">100%</div><div class="lbl">Foco no resultado</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" aria-labelledby="cta-title">
+  <div class="container">
+    <div class="cta-inner fade-up">
+      <h2 id="cta-title">Pronto para Organizar as Finanças da sua Propriedade?</h2>
+      <p>Agende uma conversa gratuita com Angelo Marcos Rizzo e descubra como estruturar a gestão financeira do seu negócio rural.</p>
+      <div class="cta-actions">
+        <a href="https://wa.me/5528999691480" target="_blank" rel="noopener" class="btn btn-cta-primary">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.528 5.858L0 24l6.335-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.855 0-3.596-.502-5.096-1.373l-.365-.217-3.762.896.944-3.658-.237-.378A9.965 9.965 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+          Consultoria Gratuita pelo WhatsApp
+        </a>
+        <a href="#contato" class="btn btn-cta-outline">Enviar Mensagem</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" aria-labelledby="contato-title">
+  <div style="padding:100px 0;background:var(--white);">
+    <div class="container">
+      <div class="contact-inner">
+        <div class="fade-up">
+          <div class="section-label">Entre em Contato</div>
+          <h2 class="section-title" id="contato-title">Vamos Conversar sobre seu <span>Negócio Rural</span></h2>
+          <p class="section-subtitle">Atendemos produtores rurais, cooperativas, agroindústrias e pecuaristas em todo o Espírito Santo.</p>
+          <div class="contact-items">
+            <div class="contact-item">
+              <div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-.79a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+              <div class="contact-item-text">
+                <h4>WhatsApp &amp; WhatsApp Business</h4>
+                <a href="https://wa.me/5528999691480">(28) 99969.1480</a> — WhatsApp<br/>
+                <a href="https://wa.me/5528999106532">(28) 99910.6532</a> — WhatsApp Business
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div class="contact-item-text">
+                <h4>E-mail</h4>
+                <a href="mailto:marcos@marizz.com.br">marcos@marizz.com.br</a>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div class="contact-item-text">
+                <h4>Localização</h4>
+                <p>Cachoeiro de Itapemirim – ES<br>Atendimento presencial e remoto</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form fade-up">
+          <h3>Solicite uma Consultoria</h3>
+          <form id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nome">Nome *</label>
+                <input type="text" id="nome" name="nome" class="form-control" placeholder="Seu nome" required />
+              </div>
+              <div class="form-group">
+                <label for="propriedade">Propriedade / Empresa</label>
+                <input type="text" id="propriedade" name="propriedade" class="form-control" placeholder="Nome da fazenda ou empresa" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail *</label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="seu@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="telefone">WhatsApp</label>
+              <input type="tel" id="telefone" name="telefone" class="form-control" placeholder="(28) 99999-9999" />
+            </div>
+            <div class="form-group">
+              <label for="segmento">Segmento</label>
+              <select id="segmento" name="segmento" class="form-control">
+                <option value="">Selecione seu segmento...</option>
+                <option>Produtor Rural / Fazendeiro</option>
+                <option>Cooperativa Agrícola</option>
+                <option>Agroindústria</option>
+                <option>Pecuarista</option>
+                <option>Outro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="mensagem">Mensagem *</label>
+              <textarea id="mensagem" name="mensagem" class="form-control" placeholder="Conte sobre seu negócio rural e o que precisa..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Enviar Mensagem
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-icon">M</div>
+          <div class="logo-text"><strong>MARIZZ</strong><span>Agronegócio</span></div>
+        </div>
+        <p>Gestão financeira especializada para o agronegócio do Espírito Santo — do campo ao resultado.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M17.5 6.5h.01"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="#servicos">Gestão Financeira Rural</a></li>
+          <li><a href="#servicos">BI Agrícola</a></li>
+          <li><a href="#servicos">BPO Financeiro Rural</a></li>
+          <li><a href="#credito">Crédito Rural</a></li>
+          <li><a href="#servicos">Planejamento de Safra</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Público</h4>
+        <ul>
+          <li><a href="#publico">Produtores Rurais</a></li>
+          <li><a href="#publico">Cooperativas</a></li>
+          <li><a href="#publico">Agroindústrias</a></li>
+          <li><a href="#publico">Pecuaristas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5528999691480">(28) 99969.1480</a></li>
+          <li><a href="https://wa.me/5528999106532">(28) 99910.6532</a></li>
+          <li><a href="mailto:marcos@marizz.com.br">marcos@marizz.com.br</a></li>
+          <li><a href="index.html">← Site Principal</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 MARIZZ — Gestão e Finanças. Todos os direitos reservados.</p>
+      <p><a href="index.html">← Voltar ao site principal</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/5528999691480" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.528 5.858L0 24l6.335-1.508A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.855 0-3.596-.502-5.096-1.373l-.365-.217-3.762.896.944-3.658-.237-.378A9.965 9.965 0 012 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>
+</a>
+
+<script>
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 60); });
+  function openMobileNav()  { document.getElementById('mobileNav').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); document.body.style.overflow = ''; }
+  const observer = new IntersectionObserver((entries) => { entries.forEach((e, i) => { if (e.isIntersecting) { setTimeout(() => e.target.classList.add('visible'), i * 80); observer.unobserve(e.target); } }); }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.form-submit');
+    if (!this.nome.value.trim() || !this.email.value.trim() || !this.mensagem.value.trim()) { alert('Preencha os campos obrigatórios: Nome, E-mail e Mensagem.'); return; }
+    btn.innerHTML = '✓ Mensagem Enviada!'; btn.style.background = '#22c55e'; btn.disabled = true;
+    setTimeout(() => { this.reset(); btn.innerHTML = 'Enviar Mensagem'; btn.style.background = ''; btn.disabled = false; }, 3000);
+  });
+</script>
+</body>
+</html>
