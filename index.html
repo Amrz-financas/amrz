@@ -125,6 +125,28 @@
       border-color: var(--white);
       transform: translateY(-2px);
     }
+    .service-sub-list {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .service-sub-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: .88rem;
+      color: var(--text-body);
+      line-height: 1.55;
+    }
+    .service-sub-list li svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+      margin-top: 3px;
+      color: var(--gold);
+    }
+
     .btn-agro {
       background: linear-gradient(135deg, #2D6A4F, #1B4332);
       color: #E9C46A;
@@ -1672,6 +1694,16 @@
           </div>
           <h3>Gestão Financeira Empresarial</h3>
           <p>Organização completa das finanças da sua empresa: contas a pagar e receber, conciliação bancária e relatórios gerenciais em tempo real.</p>
+          <ul class="service-sub-list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Planejamento Financeiro</strong> — Definição de metas, projeções de receita e despesa e estratégias de crescimento sustentável.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Renegociação de Dívidas</strong> — Mapeamento e reestruturação de passivos, negociação com credores e planejamento de quitação com foco na saúde financeira da empresa.</span>
+            </li>
+          </ul>
         </div>
 
         <div class="service-card fade-up">
@@ -1730,6 +1762,22 @@
           </div>
           <h3>Análise de Viabilidade</h3>
           <p>Estudos detalhados de viabilidade econômico-financeira para novos projetos, expansões e investimentos com análise de risco e retorno.</p>
+        </div>
+
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h3>Assessoria Jurídica Corporativa</h3>
+          <p>Suporte jurídico integrado à gestão financeira: elaboração e revisão de contratos empresariais, recuperação de crédito, compliance regulatório e acompanhamento em negociações societárias — garantindo segurança legal nas decisões estratégicas do seu negócio.</p>
+        </div>
+
+        <div class="service-card fade-up">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="6"/><circle cx="16" cy="16" r="6"/><path d="M13.5 10.5l-3 3"/><path d="M10.5 10.5l3 3"/></svg>
+          </div>
+          <h3>M &amp; A — Fusões e Aquisições</h3>
+          <p>Assessoria completa em processos de fusão, aquisição e reestruturação societária: valuation de empresas, due diligence financeira, modelagem de negociação e suporte na execução da transação — maximizando valor e minimizando riscos para compradores e vendedores.</p>
         </div>
 
       </div>
@@ -2120,11 +2168,15 @@
               <select id="servico" name="servico" class="form-control">
                 <option value="">Selecione um serviço...</option>
                 <option>Gestão Financeira Empresarial</option>
-                <option>DRE &amp; Fluxo de Caixa</option>
+                <option>Planejamento Financeiro</option>
+                <option>Renegociação de Dívidas</option>
+                <option>Business Intelligence &amp; Análise de Dados</option>
                 <option>BPO Financeiro</option>
                 <option>Consultoria Financeira</option>
                 <option>Planejamento Orçamentário</option>
                 <option>Análise de Viabilidade</option>
+                <option>Assessoria Jurídica Corporativa</option>
+                <option>M &amp; A — Fusões e Aquisições</option>
                 <option>Outros</option>
               </select>
             </div>
